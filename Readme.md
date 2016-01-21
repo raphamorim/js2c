@@ -10,7 +10,8 @@ npm install js2c
 
 Then do the Magic.
 
-```
+```javascript
+
 var js2c = require("js2c");
 
 var js = "function sum(a, b){  console.log(a + b) }";
