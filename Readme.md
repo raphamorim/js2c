@@ -12,9 +12,9 @@ Then do the Magic.
 
 ```javascript
 
-var js2c = require("js2c");
+var js2c = require("js2c"),
+    jsString = " function sum(a, b){  console.log(a + b) } ";
 
-var js = "function sum(a, b){  console.log(a + b) }";
-var c = js2c(jsData) // void sum(int x, int y) { printf("%d ", x + y); } 
+var c = js2c(jsString); // "void sum(int x, int y) { printf("%d ", x + y);}" 
 
 ```
