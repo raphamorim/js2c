@@ -8,8 +8,10 @@
 
 var parseJS = require('babel-core').parse;
 
-var fs = require("fs"),
-  core = require("./core"),
+var fs = require('fs'),
+  util = require('util'),
+  parser = require('./src/parser'),
+  header = require('./src/header'),
   jsData = fs.readFileSync('test/fixtures/es5.sample.js', 'utf8');
 
 var cData = new String();
@@ -19,7 +21,7 @@ function Js2c() {
     var ast = parseJS(data),
       body = ast.body;
 
-    // console.log(body)
+    // console.log(util.inspect((body), false, null));
     return read(body);
   }
 
@@ -34,7 +36,8 @@ function Js2c() {
 
       if (item.type === 'VariableDeclaration') {
         for (var d = 0; d < item.declarations.length; d++) {
-          str = str.concat(core.variable(item.declarations[d]));
+          // console.log(util.inspect((item.declarations[d]), false, null));
+          str = str.concat(parser.variable(item.declarations[d]));
         }
       }
 
@@ -50,4 +53,4 @@ function Js2c() {
 var js2c = new Js2c();
 module.exports = js2c;
 
-console.log(js2c.eval(jsData));
+// console.log(js2c.eval(jsData));

@@ -1,32 +1,40 @@
 // Strings and Numbers
-var title = "ES5 SAMPLE JS",
-    description = "",
-    number = 1;
-// TODO: var number1 = new Number();
+// var title = "ES5 SAMPLE JS",
+//     description = "",
+//     number = 1;
+// var number1 = new Number();
+// var number2 = Number();
+// var number3 = Number(21);
+// var string = new String();
+// var string = String();
+// var simpleBool = false;
+// var bool = Boolean();
+// var boolean = new Boolean(true);
+
 // ---------------------------------------
 
 
 // Arrays
-var tips = [
-  "Click on any AST node with a '+' to expand it",
+// var tips = [
+//   "Click on any AST node with a '+' to expand it",
 
-  "Hovering over a node highlights the \
-   corresponding part in the source code",
+//   "Hovering over a node highlights the \
+//    corresponding part in the source code",
 
-  "Shift click on an AST node expands the whole substree"
-];
-var tipsArr = new Array(); //TODO
+//   "Shift click on an AST node expands the whole substree"
+// ];
+// TODO: var tipsArr = new Array();
 // ---------------------------------------
 
 
 // Object
-var obj = {};
-obj.a = "raphael";
+// var obj = {};
+// obj.a = "raphael";
 
-var obj2 = {
-    name: "bob",
-    age: 12
-};
+// var obj2 = {
+//     name: "bob",
+//     age: 12
+// };
 // TODO: var obj1 = new Object();
 // ---------------------------------------
 

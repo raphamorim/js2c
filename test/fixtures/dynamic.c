@@ -6,7 +6,7 @@ typedef union {
         char* char_type;
         //and so on
     } dynamic;
-    
+
 void test_function(dynamic *data)
 {
     char* command;
