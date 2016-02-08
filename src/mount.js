@@ -12,7 +12,7 @@ function Mount() {
     this.bool = function(identifier, value) {
         value = (value)? Boolean(value) : false;
 
-        return 'bool ' + identifier + ' = ' + value + ';\n';
+        return 'boolean ' + identifier + ' = ' + value + ';\n';
     }
 
     this.interger = function(identifier, value) {

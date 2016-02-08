@@ -37,14 +37,16 @@ function Js2c() {
       if (item.type === 'VariableDeclaration') {
         for (var d = 0; d < item.declarations.length; d++) {
           // console.log(util.inspect((item.declarations[d]), false, null));
-          str = str.concat(parser.variable(item.declarations[d]));
+          var data = parser.variable(item.declarations[d]);
+          str = str.concat(data.stringFormat);
+          header.add(data.dependencies);
         }
       }
 
       cString = cString.concat(str);
     }
 
-    return cString;
+    return (header.mount()).concat(cString);
   }
 
   this.eval = evaluate;
