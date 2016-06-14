@@ -4,7 +4,7 @@ var assert = require('assert'),
 var includes = require('../src/header.js');
 
 describe('Variables Tests', function() {
-    afterEach(function() {
+    beforeEach(function() {
         includes.flush();
     })
     context('-> Sample Definitions', function() {
@@ -253,6 +253,40 @@ describe('Variables Tests', function() {
                 var array = 'Array arr;\n' + 'insertArray(&arr, 0);\n' +
                     'insertArray(&arr, 1);\n' + 'insertArray(&arr, 2);\n' +
                     'insertArray(&arr, 3);\n';
+
+                assert.equal(typeof result, 'string');
+                code = includes.mount() + array;
+                assert.deepEqual(result, code);
+                done();
+            });
+        });
+        context('native definition', function() {
+            it('should return array defition', function(done) {
+                includes.add(['array']);
+                var code = "var arr = [0,1,2,3];";
+                var result = js2c.eval(code);
+
+                var array = 'Array arr;\n' + 'insertArray(&arr, 0);\n' +
+                    'insertArray(&arr, 1);\n' + 'insertArray(&arr, 2);\n' +
+                    'insertArray(&arr, 3);\n';
+
+                assert.equal(typeof result, 'string');
+                code = includes.mount() + array;
+                assert.deepEqual(result, code);
+                done();
+            });
+        });
+        context('native definition', function() {
+            it('should return array defition', function(done) {
+                includes.add(['array']);
+                var code = "var tips = [ " +
+                    "'Click'," + "'AST'," + "'code'," +
+                    "'1'," + "'Shift'," + "];";
+                var result = js2c.eval(code);
+
+                var array = 'Array tips;\n' + 'insertArray(&tips, "Click");\n' +
+                    'insertArray(&tips, "AST");\n' + 'insertArray(&tips, "code");\n' +
+                    'insertArray(&tips, 1);\n' + 'insertArray(&tips, "Shift");\n';
 
                 assert.equal(typeof result, 'string');
                 code = includes.mount() + array;

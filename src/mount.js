@@ -24,7 +24,8 @@ function Mount() {
     this.array = function(identifier, elements) {
         var str = 'Array ' + identifier + ';\n';
         for (var i = 0; i < elements.length; i++) {
-            str += 'insertArray(&' + identifier + ', ' + elements[i].value + ');\n';
+            var value = (isNaN(elements[i].value)) ? '"' + elements[i].value + '"' : elements[i].value;
+            str += 'insertArray(&' + identifier + ', ' + value + ');\n';
         }
 
         return str;
