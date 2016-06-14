@@ -276,7 +276,7 @@ describe('Variables Tests', function() {
                 done();
             });
         });
-        context('native definition', function() {
+        context('native definition using strings and intergers', function() {
             it('should return array defition', function(done) {
                 includes.add(['array']);
                 var code = "var tips = [ " +
@@ -287,6 +287,34 @@ describe('Variables Tests', function() {
                 var array = 'Array tips;\n' + 'insertArray(&tips, "Click");\n' +
                     'insertArray(&tips, "AST");\n' + 'insertArray(&tips, "code");\n' +
                     'insertArray(&tips, 1);\n' + 'insertArray(&tips, "Shift");\n';
+
+                assert.equal(typeof result, 'string');
+                code = includes.mount() + array;
+                assert.deepEqual(result, code);
+                done();
+            });
+        });
+        context('newExpression definition', function() {
+            it('should return array defition', function(done) {
+                includes.add(['array']);
+                var code = "var tipsArr = new Array();";
+                var result = js2c.eval(code);
+
+                var array = 'Array tipsArr;\n';
+
+                assert.equal(typeof result, 'string');
+                code = includes.mount() + array;
+                assert.deepEqual(result, code);
+                done();
+            });
+        });
+        context('expression definition', function() {
+            it('should return array defition', function(done) {
+                includes.add(['array']);
+                var code = "var tipsArr = Array();";
+                var result = js2c.eval(code);
+
+                var array = 'Array tipsArr;\n';
 
                 assert.equal(typeof result, 'string');
                 code = includes.mount() + array;

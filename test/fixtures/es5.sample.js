@@ -18,15 +18,15 @@
 // Arrays
 // var arr = [0,1,2,3];
 
-var tips = [
-  "Click on any AST node with a '+' to expand it",
-  "Hovering over a node highlights the \
-   corresponding part in the source code",
-   1,
-  "Shift click on an AST node expands the whole substree"
-];
+// var tips = [
+//   "Click on any AST node with a '+' to expand it",
+//   "Hovering over a node highlights the \
+//    corresponding part in the source code",
+//    1,
+//   "Shift click on an AST node expands the whole substree"
+// ];
 // TODO: Support Stringformat
-// var tipsArr = new Array();
+var tipsArr = new Array();
 // ---------------------------------------
 
 
