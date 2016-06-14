@@ -2,10 +2,10 @@ var vm = require('vm'),
     mount = require('./mount');
 
 // Variable Declartions Case
-exports.variable = function(obj) {
-    var str = '';
-    var deps = [];
-    var init = obj.init,
+exports.variableDeclaration = function(obj) {
+    var str = '',
+        deps = [],
+        init = obj.init,
         identifier = obj.id.name;
 
     if (init.type === 'Literal') {
@@ -17,6 +17,11 @@ exports.variable = function(obj) {
             deps.push('boolean');
             str = mount.bool(identifier, init.value);
         }
+    }
+
+    if (init.type === 'ArrayExpression') {
+        deps.push('array');
+        str = mount.array(identifier, init.elements);
     }
 
     if (init.type === 'NewExpression' ||
@@ -33,6 +38,9 @@ exports.variable = function(obj) {
         } else if (init.callee.name === 'Boolean') {
             deps.push('boolean');
             str = mount.bool(identifier, value);
+        } else if (init.callee.name === 'Array') {
+            deps.push('array');
+            str = mount.array(identifier, []);
         }
     }
 
@@ -40,4 +48,17 @@ exports.variable = function(obj) {
         stringFormat: str,
         dependencies: deps
     };
+}
+
+// Function Declaration Case
+exports.functionDeclaration = function(item) {
+    var fnName = item.id.name,
+        fnBody = item.body.body;
+
+    var fnString = 'void ' + fnName + '()\n{\n';
+
+    return {
+        stringFormat: fnString,
+        body: fnBody
+    }
 }

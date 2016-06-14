@@ -20,6 +20,15 @@ function Mount() {
 
         return 'int ' + identifier + ' = ' + value + ';\n';
     }
+
+    this.array = function(identifier, elements) {
+        var str = 'Array ' + identifier + ';\n';
+        for (var i = 0; i < elements.length; i++) {
+            str += 'insertArray(&' + identifier + ', ' + elements[i].value + ');\n';
+        }
+
+        return str;
+    }
 }
 
 module.exports = new Mount();

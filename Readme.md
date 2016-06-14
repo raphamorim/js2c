@@ -15,6 +15,18 @@ Then do the Magic.
 var js2c = require("js2c"),
     jsString = " function sum(a, b){  console.log(a + b) } ";
 
-var c = js2c(jsString); // "void sum(int x, int y) { printf("%d ", x + y);}"
+var c = js2c(jsString); // "void sum(int x, int y) { printf("%d ", x + y); }"
 
 ```
+
+## Roadmap
+
+- [ ] Variable declarations
+  - [x] string
+  - [x] interger
+  - [x] boolean
+  - [x] array
+  - [ ] object
+- [ ] Functions declarations
+- [ ] Modules declarations (import cases)
+

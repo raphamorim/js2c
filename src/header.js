@@ -1,14 +1,18 @@
+var fs = require('fs');
+
 function Header() {
     var types = [],
     	data = '';
 
     function putType(dep) {
-    	if (types.indexOf(dep) >= 0) {
+    	if (types.indexOf(dep) >= 0)
     	 	return;
-    	}
 
     	if (dep === 'boolean')
-    		data = data.concat('typedef enum { false, true } boolean;\n');
+    		data = data.concat('typedef enum { false, true } boolean;\n\n');
+
+    	if (dep === 'array')
+    		data += fs.readFileSync('resources/array.c', 'utf8');
 
     	types.push(dep);
     }
@@ -22,9 +26,18 @@ function Header() {
     }
 
     this.mount = function() {
-    	return data;
+    	if (!data.length)
+    		return '';
+
+    	var includes = fs.readFileSync('resources/include.c', 'utf8');
+        includes = includes.concat(data);
+    	return includes;
+    }
+
+    this.flush = function() {
+        types = [];
+        data = '';
     }
 }
 
-var header = new Header();
-module.exports = header;
+module.exports = new Header();

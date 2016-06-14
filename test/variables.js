@@ -1,7 +1,12 @@
 var assert = require('assert'),
     js2c = require('../index.js');
 
+var includes = require('../src/header.js');
+
 describe('Variables Tests', function() {
+    afterEach(function() {
+        includes.flush();
+    })
     context('-> Sample Definitions', function() {
         context('number Definition', function() {
             it('should return string', function(done) {
@@ -23,10 +28,13 @@ describe('Variables Tests', function() {
         });
         context('boolean Definition', function() {
             it('should return string', function(done) {
-                var result = js2c.eval("var turing = true");
+                includes.add(['boolean']);
+                var code = "var turing = true";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool turing = true;\n');
+                code = includes.mount() + 'boolean turing = true;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
@@ -164,55 +172,91 @@ describe('Variables Tests', function() {
     context('-> Boolean Cases', function() {
         context('native function without arguments', function() {
             it('should return false', function(done) {
-                var result = js2c.eval("var bo = Boolean()");
+                includes.add(['boolean']);
+                var code = "var bo = Boolean()";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = false;\n');
+                code = includes.mount() + 'boolean bo = false;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
         context('native function with a argument which is not a Int and not false', function() {
             it('should return true', function(done) {
-                var result = js2c.eval("var bo = Boolean('dog')");
+                includes.add(['boolean']);
+                var code = "var bo = Boolean('dog')";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = true;\n');
+                code = includes.mount() + 'boolean bo = true;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
         context('native function with false as argument', function() {
             it('should return false', function(done) {
-                var result = js2c.eval("var bo = Boolean(false)");
+                includes.add(['boolean']);
+                var code = "var bo = Boolean(false)";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = false;\n');
+                code = includes.mount() + 'boolean bo = false;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
         context('newExpression without arguments', function() {
             it('should return false', function(done) {
-                var result = js2c.eval("var bo = new Boolean()");
+                includes.add(['boolean']);
+                var code = "var ba = new Boolean()";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = false;\n');
+                code = includes.mount() + 'boolean ba = false;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
         context('newExpression with a argument which is not a Int and not false', function() {
             it('should return true', function(done) {
-                var result = js2c.eval("var bo = new Boolean('dog')");
+                includes.add(['boolean']);
+                var code = "var ba = new Boolean('dog')";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = true;\n');
+                code = includes.mount() + 'boolean ba = true;\n';
+                assert.deepEqual(result, code);
                 done();
             });
         });
         context('newExpression with false as argument', function() {
             it('should return false', function(done) {
-                var result = js2c.eval("var bo = new Boolean(false)");
+                includes.add(['boolean']);
+                var code = "var ba = new Boolean(false)";
+                var result = js2c.eval(code);
 
                 assert.equal(typeof result, 'string');
-                assert.deepEqual(result, 'bool bo = false;\n');
+                code = includes.mount() + 'boolean ba = false;\n';
+                assert.deepEqual(result, code);
+                done();
+            });
+        });
+    });
+    context('-> Array Cases', function() {
+        context('native definition', function() {
+            it('should return array defition', function(done) {
+                includes.add(['array']);
+                var code = "var arr = [0,1,2,3];";
+                var result = js2c.eval(code);
+
+                var array = 'Array arr;\n' + 'insertArray(&arr, 0);\n' +
+                    'insertArray(&arr, 1);\n' + 'insertArray(&arr, 2);\n' +
+                    'insertArray(&arr, 3);\n';
+
+                assert.equal(typeof result, 'string');
+                code = includes.mount() + array;
+                assert.deepEqual(result, code);
                 done();
             });
         });
