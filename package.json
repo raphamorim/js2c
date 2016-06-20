@@ -4,7 +4,9 @@
   "description": "Transform JavaScript in C",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "coverage": "./node_modules/.bin/istanbul cover grunt test --report lcovonly -- -R spec",
+    "ci": "npm run-script coverage && node ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
   },
   "homepage": "https://github.com/raphamorim/js2c#readme",
   "devDependencies": {
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.4",
     "mocha": "^2.3.4"
   },
   "dependencies": {
