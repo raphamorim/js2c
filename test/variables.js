@@ -6,7 +6,7 @@ var includes = require('../src/header.js');
 describe('Variables Tests', function() {
     beforeEach(function() {
         includes.flush();
-    })
+    });
     context('-> Sample Definitions', function() {
         context('number Definition', function() {
             it('should return string', function(done) {

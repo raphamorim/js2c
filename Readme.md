@@ -1,4 +1,4 @@
-# js2c
+# js2c - JavaScript to C
 
 ### WORK IN PROGRESS, BUT [YOU CAN HELP](https://github.com/raphamorim/js2c/issues)
 
