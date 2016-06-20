@@ -26,7 +26,7 @@
 //   "Shift click on an AST node expands the whole substree"
 // ];
 // TODO: Support Stringformat
-var tipsArr = new Array();
+// var tipsArr = new Array();
 // ---------------------------------------
 
 
