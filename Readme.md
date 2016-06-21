@@ -1,6 +1,6 @@
 # js2c - JavaScript to C
 
-### WORK IN PROGRESS, BUT [YOU CAN HELP](https://github.com/raphamorim/js2c/issues)
+#### WORK IN PROGRESS, BUT [YOU CAN HELP](https://github.com/raphamorim/js2c/issues)
 
 > Transform JavaScript in C
 
@@ -21,7 +21,9 @@
 
 ## Why?
 
-...And why not?
+The idea is bring the possibility of development to complex platforms like PS4, PS3, PSP and PS Vita using JavaScript to native applications. In a close future JS2C will be able to read and understand external packages.
+
+And the other reason: [Why Not?](https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-js).
 
 ## Getting
 
@@ -93,7 +95,7 @@ c.exec();
 
 ### Notes
 
-IMPORTANT: **For you while you have to define values in variable before use it.**
+IMPORTANT: **For while you have to define variable before use it.**
 
 ## Roadmap
 
@@ -104,5 +106,7 @@ IMPORTANT: **For you while you have to define values in variable before use it.*
   - [x] array
   - [ ] object
 - [ ] Functions declarations
+  - [ ] callbacks declarations
+  - [ ] closure cases
 - [ ] Native Funcs/Methods (`console`, `import`, `while`, `for`, `Array.length`and much others...)
 - [ ] Modules declarations (import cases)
